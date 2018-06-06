@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import EquipmentList from './EquipmentList';
 
 class MainMenu extends React.Component {
     constructor(props) {
@@ -24,8 +25,10 @@ class MainMenu extends React.Component {
     }
     
     render() {
-        const buttons = this.state.categories.map((category) =>
-            <EquipmentCategoryButton name={category.name}></EquipmentCategoryButton>
+        const buttons = this.props.categories.map((category) =>
+            <EquipmentCategoryButton key={category.name} category={category} 
+                handleViewChange={this.props.handleViewChange}>
+            </EquipmentCategoryButton>
         );
         return(
             <div>{buttons}</div>
@@ -35,9 +38,10 @@ class MainMenu extends React.Component {
 
 class EquipmentCategoryButton extends React.Component {
     render() {
-        const name = this.props.name;
+        const category = this.props.category;
+        //const handleViewChange = this.props.handleViewChange;
         return(
-            <button>{name}</button>
+            <button onClick={() => this.props.handleViewChange("EquipmentList", category)}>{category.name}</button>
         );
     }
 }

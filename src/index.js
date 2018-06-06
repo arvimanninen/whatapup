@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MainMenu from './MainMenu';
+import App from './App';
 // import App from './App';
 // import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<MainMenu />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 // registerServiceWorker();

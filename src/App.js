@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import MainMenu from './MainMenu';
+import EquipmentList from './EquipmentList';
 
 class App extends Component {
   constructor(props) {
@@ -19,19 +21,36 @@ class App extends Component {
         {name: "Item c2", completed: false},
         {name: "Item c3", completed: false}
       ]}
-    ], currentView: "MainMenu"};
+    ], currentView: "MainMenu", currentCategory: null};
+
+    this.handleViewChange = this.handleViewChange.bind(this);
+    
+  }
+
+  handleViewChange(targetView, targetCategory) {
+    this.setState({
+      currentView: targetView,
+      currentCategory: targetCategory
+    });
   }
   /*
     const buttons = this.state.categories.map((category) =>
             <EquipmentCategoryButton name={category.name} url={category.url}></EquipmentCategoryButton>
         );
   */
-  getCategoryNames = () => this.state.categories.map((category) => category.name);
+  
 
   render() {
     return (
       <div>
-        {this.state.currentView === "MainMenu" ? <MainMenu></MainMenu> : null}
+        {this.state.currentView === "MainMenu" ? 
+          <MainMenu categories={this.state.categories} handleViewChange={this.handleViewChange}>
+          </MainMenu> 
+        : null}
+        {this.state.currentView === "EquipmentList" ? 
+          <EquipmentList category={this.state.currentCategory} handleViewChange={this.handleViewChange}>
+          </EquipmentList> 
+        : null}
       </div>
     );
   }
