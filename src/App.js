@@ -24,33 +24,44 @@ class App extends Component {
     ], currentView: "MainMenu", currentCategory: null};
 
     this.handleViewChange = this.handleViewChange.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this);
     
   }
 
-  handleViewChange(targetView, targetCategory) {
+  handleViewChange(view, category) {
     this.setState({
-      currentView: targetView,
-      currentCategory: targetCategory
+      currentView: view,
+      currentCategory: category
     });
   }
-  /*
-    const buttons = this.state.categories.map((category) =>
-            <EquipmentCategoryButton name={category.name} url={category.url}></EquipmentCategoryButton>
-        );
-  */
   
-
+  handleItemClick(categoryName, itemName) {
+    let categoryNames = this.state.categories.map((category) => category.name);
+    let categoryIndex = categoryNames.indexOf(categoryName);
+    let itemNames = this.state.categories[categoryIndex].items.map((item) => item.name);
+    let itemIndex = itemNames.indexOf(itemName);
+    console.log("categoryIndex: " + categoryIndex);
+    console.log("itemIndex: " + itemIndex);
+    let itemCompleted = null;
+    if(this.state.categories[categoryIndex].items[itemIndex].completed === false) {
+      itemCompleted = true;
+    } else {
+      itemCompleted = false;
+    }
+    this.state.categories[categoryIndex].items[itemIndex].completed = itemCompleted;
+    this.forceUpdate();
+  }
+  
   render() {
     return (
       <div>
         {this.state.currentView === "MainMenu" ? 
           <MainMenu categories={this.state.categories} handleViewChange={this.handleViewChange}>
-          </MainMenu> 
-        : null}
+          </MainMenu> : null}
         {this.state.currentView === "EquipmentList" ? 
-          <EquipmentList category={this.state.currentCategory} handleViewChange={this.handleViewChange}>
-          </EquipmentList> 
-        : null}
+          <EquipmentList category={this.state.currentCategory} handleViewChange={this.handleViewChange}
+          handleItemClick={this.handleItemClick}>
+          </EquipmentList> : null}
       </div>
     );
   }

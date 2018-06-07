@@ -1,14 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 class EquipmentList extends React.Component {
+    
     render(){
         const category = this.props.category;
-        const items = category.items.map((item) => <li key={item.name}>{item.name}</li>);
+        const items = category.items.map((item) => 
+            <button key={item.name} 
+            onClick={() => this.props.handleItemClick(category.name, item.name)}>{item.name}</button>);
         return(
             <div>
                 <h3>{category.name}</h3>
-                <ul>{items}</ul>
+                <div>{items}</div>
                 <button onClick={() => this.props.handleViewChange("MainMenu")}>Back</button>
             </div>
         );
