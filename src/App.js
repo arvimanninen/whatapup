@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 import MainMenu from './MainMenu';
 import EquipmentList from './EquipmentList';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {categories: [
-      {name: "Category A", items: [
-        {name: "Item a1", completed: false},
-        {name: "Item a2", completed: false},
-        {name: "Item a3", completed: false}
+      {key: "CategoryA", name: "Category A", items: [
+        {key: "A-1", name: "Item a1", completed: false},
+        {key: "A-2", name: "Item a2", completed: false},
+        {key: "A-3", name: "Item a3", completed: false}
       ]},
-      {name: "Category B", items: [
-        {name: "Item b1", completed: false},
-        {name: "Item b2", completed: false},
-        {name: "Item b3", completed: false}
+      {key: "CategoryB", name: "Category B", items: [
+        {key: "B-1", name: "Item b1", completed: false},
+        {key: "B-2", name: "Item b2", completed: false},
+        {key: "B-3", name: "Item b3", completed: false}
       ]},
-      {name: "Category C", items: [
-        {name: "Item c1", completed: false},
-        {name: "Item c2", completed: false},
-        {name: "Item c3", completed: false}
+      {key: "CategoryC", name: "Category C", items: [
+        {key: "C-1", name: "Item c1", completed: false},
+        {key: "C-2", name: "Item c2", completed: false},
+        {key: "C-3", name: "Item c3", completed: false}
       ]}
     ], currentView: "MainMenu", currentCategory: null};
 
@@ -35,21 +37,23 @@ class App extends Component {
     });
   }
   
-  handleItemClick(categoryName, itemName) {
-    let categoryNames = this.state.categories.map((category) => category.name);
-    let categoryIndex = categoryNames.indexOf(categoryName);
-    let itemNames = this.state.categories[categoryIndex].items.map((item) => item.name);
-    let itemIndex = itemNames.indexOf(itemName);
+  handleItemClick(categoryKey, itemKey) {
+    let categoryKeys = this.state.categories.map((category) => category.key);
+    let categoryIndex = categoryKeys.indexOf(categoryKey);
+    let itemKeys = this.state.categories[categoryIndex].items.map((item) => item.key);
+    let itemIndex = itemKeys.indexOf(itemKey);
     console.log("categoryIndex: " + categoryIndex);
     console.log("itemIndex: " + itemIndex);
-    let itemCompleted = null;
+    let itemCompleted = false;
     if(this.state.categories[categoryIndex].items[itemIndex].completed === false) {
       itemCompleted = true;
-    } else {
-      itemCompleted = false;
-    }
-    this.state.categories[categoryIndex].items[itemIndex].completed = itemCompleted;
-    this.forceUpdate();
+    } 
+    let updatedCategories = update(this.state.categories, {[categoryIndex]: {items: {[itemIndex]: {completed: {$set: itemCompleted}}}}});
+    this.setState({
+      categories: updatedCategories
+    });
+    // this.state.categories[categoryIndex].items[itemIndex].completed = itemCompleted;
+    // this.forceUpdate();
   }
   
   render() {
@@ -65,6 +69,10 @@ class App extends Component {
       </div>
     );
   }
+}
+
+class StorageApi {
+
 }
 
 export default App;
