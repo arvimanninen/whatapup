@@ -1,11 +1,14 @@
 class StorageApi {
-    getCategoryItemData(itemKey) {
+    getCategoryItemCompleted(itemKey) {
         if(localStorage.getItem(itemKey)) {
-            let itemCompleted = Boolean(localStorage.getItem(itemKey));
-            return localStorage.getItem(itemKey);
+            return Boolean(localStorage.getItem(itemKey));
+        } else {
+            return -1;
         }
     }
-    setCategoryItemData(itemKey, value) {
-        localStorage.setItem(itemKey, JSON.stringify(value));
+    setCategoryItemCompleted(itemKey, valueBoolean) {
+        let valueInt = valueBoolean ? 1 : 0;
+        localStorage.setItem(valueInt, itemKey);
     }
 }
+export default StorageApi;
