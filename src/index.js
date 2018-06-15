@@ -22,6 +22,8 @@ const CATEGORIES = [
     ]}
 ];
 
-
-ReactDOM.render(<App categories={CATEGORIES} />, document.getElementById('root'));
+// CHANGE NEXT LINE AS A COMMENT BEFORE TESTING
+// ReactDOM.render(<App categories={CATEGORIES} />, document.getElementById('root'));
 // registerServiceWorker();
+
+export default CATEGORIES;

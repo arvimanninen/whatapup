@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders MainMenu 1`] = `
+<div>
+  <header>
+    <h1>
+      WhataPup
+    </h1>
+    <h2>
+      To-do app for the dog puppy acquirers 
+    </h2>
+  </header>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      Category A
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      Category B
+    </button>
+    <button
+      onClick={[Function]}
+    >
+      Category C
+    </button>
+  </div>
+  <footer>
+    <a
+      href="https://www.kennelliitto.fi/en/dogs/dont-support-puppy-mills"
+    >
+      Don't support puppy mills!
+    </a>
+    <p>
+      Information based on “Iloinen Koira” (The Happy Puppy)-brochure (Finnish Kennel Club *YEAR*)
+      <br />
+      App made by Arvi Manninen 2018
+      <br />
+      Released under MIT License
+      <br />
+    </p>
+  </footer>
+</div>
+`;

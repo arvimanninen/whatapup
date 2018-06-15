@@ -8,7 +8,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {keyPairs: [], currentView: "MainMenu", currentCategory: null};
-
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleItemClick = this.handleItemClick.bind(this);
     this.createKeyPairs();
@@ -16,7 +15,6 @@ class App extends Component {
 
   createKeyPairs() {
     const categories = this.props.categories;
-
     for(let i = 0; i < categories.length; i++) {
       for(let k = 0; k < categories[i].items.length; k++) {
         // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
@@ -53,7 +51,6 @@ class App extends Component {
       keyPairs: updatedKeyPairs
     });
     localStorage.setItem(JSON.stringify(itemKey), JSON.stringify(itemCompleted));
-    
   }
   
   render() {
