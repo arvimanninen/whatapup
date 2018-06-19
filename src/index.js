@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-// import App from './App';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import registerServiceWorker from './registerServiceWorker';
 
 const CATEGORIES = [
@@ -23,7 +23,8 @@ const CATEGORIES = [
 ];
 
 // CHANGE NEXT LINE AS A COMMENT BEFORE TESTING
-// ReactDOM.render(<App categories={CATEGORIES} />, document.getElementById('root'));
+ReactDOM.render(<App categories={CATEGORIES} />, document.getElementById('root'));
 // registerServiceWorker();
 
+// FOR TESTS
 export default CATEGORIES;

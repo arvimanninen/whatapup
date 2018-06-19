@@ -3,7 +3,6 @@ import update from 'immutability-helper';
 import MainMenu from './MainMenu';
 import EquipmentList from './EquipmentList';
 
-
 class App extends Component {
   constructor(props) {
     super(props);
