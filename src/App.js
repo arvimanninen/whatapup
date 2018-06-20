@@ -57,11 +57,13 @@ class App extends Component {
       <div>
         {this.state.currentView === "MainMenu" ? 
           <MainMenu categories={this.props.categories} handleViewChange={this.handleViewChange}>
-          </MainMenu> : null}
+          </MainMenu> 
+        : null}
         {this.state.currentView === "EquipmentList" ? 
           <EquipmentList category={this.state.currentCategory} handleViewChange={this.handleViewChange}
           handleItemClick={this.handleItemClick}>
-          </EquipmentList> : null}
+          </EquipmentList> 
+        : null}
       </div>
     );
   }
