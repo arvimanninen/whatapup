@@ -3,34 +3,24 @@ import './mainmenu.css';
 
 class MainMenu extends React.Component {
     render() {
-        const buttons = this.props.categories.map((category) =>
-            <div className="row">
-                <div className="col-sm-1 col-md-2 col-lg-3"></div>
-                <div className="col">
-                    <EquipmentCategoryButton key={category.key} category={category} 
-                            handleViewChange={this.props.handleViewChange}>
-                    </EquipmentCategoryButton>
-                </div>
-                <div className="col-sm-1 col-md-2 col-lg-3"></div>
-            </div>
+        const categoryButtons = this.props.categories.map((category) => 
+            <EquipmentCategoryButton key={category.key} category={category} 
+            handleViewChange={this.props.handleViewChange}>
+            </EquipmentCategoryButton>
         );
         return(
             <div className="container-fluid">
-                <header>
-                    <div className="row">
-                        <div className="col-sm-1 col-md-2 col-lg-3"></div>
-                        <div className="col text-center">
+                <div className="row">
+                    <div className="col-sm-1 col-md-2 col-lg-3"></div>
+                    <div className="col text-center">
+                        <header>
                             <h1>WhataPup</h1>
                             <h2>To-do app for the dog puppy acquirers </h2>
+                        </header>
+                        <div>
+                            {categoryButtons}
                         </div>
-                        <div className="col-sm-1 col-md-2 col-lg-3"></div>
-                    </div>
-                </header>
-                <div>{buttons}</div>
-                <footer>
-                    <div className="row">
-                        <div className="col-sm-1 col-md-2 col-lg-3"></div>
-                        <div className="col text-center">
+                        <footer>
                             <a href="https://www.kennelliitto.fi/en/dogs/dont-support-puppy-mills">Don't support puppy mills!</a>
                             <br/>
                             Information based on “Iloinen Koira” (The Happy Puppy)-brochure (Finnish Kennel Club *YEAR*)
@@ -38,10 +28,10 @@ class MainMenu extends React.Component {
                             App made by Arvi Manninen 2018
                             <br/>
                             Released under MIT License
-                        </div>
-                        <div className="col-sm-1 col-md-2 col-lg-3"></div>
+                        </footer>
                     </div>
-                </footer>
+                    <div className="col-sm-1 col-md-2 col-lg-3"></div>
+                </div>
             </div>
         );
     }
@@ -49,9 +39,9 @@ class MainMenu extends React.Component {
 
 class EquipmentCategoryButton extends React.Component {
     render() {
-        const category = this.props.category;
+        const categoryName = this.props.category.name;
         return(
-            <button class="btn btn-primary btn-large" onClick={() => this.props.handleViewChange("EquipmentList", category)}>{category.name}</button>
+            <button className="btn btn-primary btn-lg" onClick={() => this.props.handleViewChange("EquipmentList", categoryName)}>{categoryName}</button>
         );
     }
 }
