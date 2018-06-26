@@ -6,7 +6,6 @@ import EquipmentList from './EquipmentList';
 class App extends Component {
   constructor(props) {
     super(props);
-    //this.state = {keyPairs: [], currentView: "MainMenu", currentCategory: null};
     this.state = {categories: [], currentView: "MainMenu", currentCategoryName: null};
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleEquipmentListItemClick = this.handleEquipmentListItemClick.bind(this);
@@ -25,7 +24,7 @@ class App extends Component {
         } else {
           completed = false;
         }
-        console.log(categories[i].items[k].key + ": " + completed);        
+        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + categories[i].items[k].completed);        
         this.state.categories[i].items.push({name: categories[i].items[k].name, completed: completed});
       }
     }
@@ -67,7 +66,7 @@ class App extends Component {
     return (
       <div>
         {this.state.currentView === "MainMenu" ? 
-          <MainMenu categories={this.props.categories} handleViewChange={this.handleViewChange}>
+          <MainMenu categories={this.state.categories} handleViewChange={this.handleViewChange}>
           </MainMenu> 
         : null}
         {this.state.currentView === "EquipmentList" ? 
