@@ -9,30 +9,10 @@ class App extends Component {
     //this.state = {keyPairs: [], currentView: "MainMenu", currentCategory: null};
     this.state = {categories: [], currentView: "MainMenu", currentCategoryName: null};
     this.handleViewChange = this.handleViewChange.bind(this);
-    this.handleItemClick = this.handleItemClick.bind(this);
+    this.handleEquipmentListItemClick = this.handleEquipmentListItemClick.bind(this);
     this.formatState();
   }
 
-/*
-
-const CATEGORIES = [
-    {key: "CategoryA", name: "Category A", items: [
-        {key: "A-1", name: "Item a1", completed: false},
-        {key: "A-2", name: "Item a2", completed: false},
-        {key: "A-3", name: "Item a3", completed: false}
-    ]},
-    {key: "CategoryB", name: "Category B", items: [
-        {key: "B-1", name: "Item b1", completed: false},
-        {key: "B-2", name: "Item b2", completed: false},
-        {key: "B-3", name: "Item b3", completed: false}
-    ]},
-    {key: "CategoryC", name: "Category C", items: [
-        {key: "C-1", name: "Item c1", completed: false},
-        {key: "C-2", name: "Item c2", completed: false},
-        {key: "C-3", name: "Item c3", completed: false}
-    ]}
-];
-*/
   formatState() {
     const categories = this.props.categories;
     for(let i = 0; i < categories.length; i++) {
@@ -50,25 +30,7 @@ const CATEGORIES = [
       }
     }
   }
-  /*
-  createKeyPairs() {
-    // 
-    const categories = this.props.categories;
-    for(let i = 0; i < categories.length; i++) {
-      for(let k = 0; k < categories[i].items.length; k++) {
-        // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
-        let completed = localStorage.getItem(JSON.stringify(categories[i].items[k].key));
-        if(completed === "true") {
-          completed = true;
-        } else {
-          completed = false;
-        }
-        console.log(categories[i].items[k].key + ": " + completed);        
-        this.state.keyPairs.push({key: categories[i].items[k].key, completed: completed});
-      }
-    }
-  }
-  */
+  
   handleViewChange(view, categoryName) {
     this.setState({
       currentView: view,
@@ -76,7 +38,7 @@ const CATEGORIES = [
     });
   }
   
-  handleItemClick(categoryName, itemName) {
+  handleEquipmentListItemClick(categoryName, itemName) {
     const categoryNames = this.state.categories.map((category) => category.name);
     const categoryIndex = categoryNames.indexOf(categoryName);
     const itemNames = this.state.categories[categoryIndex].items.map((item) => item.name);
@@ -110,7 +72,7 @@ const CATEGORIES = [
         : null}
         {this.state.currentView === "EquipmentList" ? 
           <EquipmentList category={currentCategory} handleViewChange={this.handleViewChange}
-          handleItemClick={this.handleItemClick}>
+          handleItemClick={this.handleEquipmentListItemClick}>
           </EquipmentList> 
         : null}
       </div>
