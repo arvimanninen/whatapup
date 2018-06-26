@@ -1,7 +1,26 @@
 import React from 'react';
+import update from 'immutability-helper';
 
 class EquipmentList extends React.Component {
     // TODO: CHANGE FUNCTION NAME!
+    
+    
+    onItemClick(itemKey) {
+        const itemKeys = this.state.itemKeyPairs.map((ikp) => ikp.key);
+        const itemIndex = itemKeys.indexOf(itemKey);
+        let itemCompleted = false;
+        if(this.state.items[itemIndex].completed === false) {
+            itemCompleted = true;
+        }
+        const updatedItemKeyPairs = update(this.state.itemKeyPairs, 
+            {[itemIndex]: {completed: {$set: itemCompleted}}}
+        );
+        this.setState({
+            itemKeyPairs: updatedItemKeyPairs
+        });
+        this.props.handleItemClick(itemKey);
+    }
+
     
 
     render(){
@@ -10,17 +29,13 @@ class EquipmentList extends React.Component {
         for(let i = 0; i < category.items.length; i++) {
             let item = category.items[i];
             if(item.completed === false) {
-                itemButtons.unshift(
-                    <button className="btn btn-primary btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        {item.name}
-                    </button>
-                );
+                itemButtons.unshift(<button className="btn btn-primary btn-lg" 
+                    key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>{item.name}
+                </button>);
             } else {
-                itemButtons.push(
-                    <button className="btn btn-light btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        <s>{item.name}</s>
-                    </button>
-                );
+                itemButtons.push(<button className="btn btn-light btn-lg" 
+                    key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>{item.name}
+                </button>);
             }
         }
         /*
@@ -44,5 +59,7 @@ class EquipmentList extends React.Component {
         );
     }
 }
+
+
 
 export default EquipmentList;

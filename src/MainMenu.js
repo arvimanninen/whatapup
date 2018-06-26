@@ -1,9 +1,10 @@
 import React from 'react';
+import './mainmenu.css';
 
 class MainMenu extends React.Component {
     render() {
         const categoryButtons = this.props.categories.map((category) => 
-            <EquipmentCategoryButton key={category.name} categoryName={category.name} 
+            <EquipmentCategoryButton key={category.key} category={category} 
             handleViewChange={this.props.handleViewChange}>
             </EquipmentCategoryButton>
         );
@@ -38,9 +39,9 @@ class MainMenu extends React.Component {
 
 class EquipmentCategoryButton extends React.Component {
     render() {
-        const categoryName = this.props.categoryName;
+        const categoryName = this.props.category.name;
         return(
-            <button className="btn btn-primary btn-lg btn-block" onClick={() => this.props.handleViewChange("EquipmentList", categoryName)}>{categoryName}</button>
+            <button className="btn btn-primary btn-lg" onClick={() => this.props.handleViewChange("EquipmentList", categoryName)}>{categoryName}</button>
         );
     }
 }
