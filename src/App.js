@@ -19,12 +19,12 @@ class App extends Component {
       for(let k = 0; k < categories[i].items.length; k++) {
         // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
         let completed = localStorage.getItem(JSON.stringify(categories[i].items[k].name));
+        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);  
         if(completed === "true") {
           completed = true;
         } else {
           completed = false;
-        }
-        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + categories[i].items[k].completed);        
+        }      
         this.state.categories[i].items.push({name: categories[i].items[k].name, completed: completed});
       }
     }
@@ -38,10 +38,8 @@ class App extends Component {
   }
   
   handleEquipmentListItemClick(categoryName, itemName) {
-    const categoryNames = this.state.categories.map((category) => category.name);
-    const categoryIndex = categoryNames.indexOf(categoryName);
-    const itemNames = this.state.categories[categoryIndex].items.map((item) => item.name);
-    const itemIndex = itemNames.indexOf(itemName);
+    const categoryIndex = this.state.categories.findIndex((category) => category.name === categoryName);
+    const itemIndex = this.state.categories[categoryIndex].items.findIndex((item) => item.name === itemName);
     let itemCompleted = false;
     if(this.state.categories[categoryIndex].items[itemIndex].completed === false) {
       itemCompleted = true;
@@ -56,9 +54,7 @@ class App extends Component {
   }
 
   getCategory(categoryName) {
-    const categoryNames = this.state.categories.map((category) => category.name);
-    const currentCategoryIndex = categoryNames.indexOf(categoryName);
-    return this.state.categories[currentCategoryIndex];
+    return this.state.categories.find((category) => category.name === categoryName)
   }
 
   render() {
@@ -74,6 +70,7 @@ class App extends Component {
           handleItemClick={this.handleEquipmentListItemClick}>
           </EquipmentList> 
         : null}
+        
       </div>
     );
   }
