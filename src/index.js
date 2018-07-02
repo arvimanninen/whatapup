@@ -5,20 +5,26 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 // import registerServiceWorker from './registerServiceWorker';
 
 const CATEGORIES = [
-    {name: "Category A", items: [
-        {name: "Item a1", completed: false},
-        {name: "Item a2", completed: false},
-        {name: "Item a3", completed: false}
+    {name: "Basic equipment", items: [
+        {name: "Collar", completed: false},
+        {name: "Leash", completed: false},
+        {name: "Resting place", completed: false},
+        {name: "Food bowl", completed: false},
+        {name: "Water bowl", completed: false},
+        {name: "Nail scissors", completed: false},
+        {name: "Brush", completed: false},
+        {name: "Suitable food", completed: false},
+        {name: "Teethers", completed: false},
+        {name: "Toys", completed: false}
     ]},
-    {name: "Category B", items: [
-        {name: "Item b1", completed: false},
-        {name: "Item b2", completed: false},
-        {name: "Item b3", completed: false}
-    ]},
-    {name: "Category C", items: [
-        {name: "Item c1", completed: false},
-        {name: "Item c2", completed: false},
-        {name: "Item c3", completed: false}
+    {name: "First aid equipment", items: [
+        {name: "Gauze", completed: false},
+        {name: "Cotton wool", completed: false},
+        {name: "Wound cleanser", completed: false},
+        {name: "Viper package", completed: false},
+        {name: "Charcoal pills", completed: false},
+        {name: "Thermometer", completed: false},
+        {name: "Tick removal tongs", completed: false}
     ]}
 ];
 

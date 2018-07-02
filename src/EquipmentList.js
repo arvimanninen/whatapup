@@ -15,7 +15,7 @@ class EquipmentList extends React.Component {
                         {item.name}
                     </button>
                 );
-            } else {
+            } else if (item.completed === true){
                 itemButtons.push(
                     <button className="btn btn-light btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
                         <s>{item.name}</s>
