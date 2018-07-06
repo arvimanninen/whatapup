@@ -6,9 +6,10 @@ class EquipmentList extends React.Component {
         let itemButtons = [];
         for(let i = 0; i < category.items.length; i++) {
             let item = category.items[i];
-            //  item.completed ? 
-            //      itemButtons.unshift(<EquipmentItemButton completed=true categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick}>)
-            //      : itemButtons.push(<EquipmentItemButton completed=false categoryName={category.name} itemName={item.name}>)
+            item.completed ? 
+                itemButtons.push(<EquipmentItemButton completed={true} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick} />)
+                : itemButtons.unshift(<EquipmentItemButton completed={false} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick}/>)
+            /*
             if(item.completed === false) {
                 itemButtons.unshift(
                     <button className="btn btn-primary btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
@@ -22,12 +23,14 @@ class EquipmentList extends React.Component {
                     </button>
                 );
             }
+            */
+
         }
         return(
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-sm-1 col-md-2 col-lg-3"></div>
-                    <div className="col">
+                    <div className="col text-center">
                         <h3>{category.name}</h3>
                         <br/>
                         <div>{itemButtons}</div>
