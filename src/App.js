@@ -19,7 +19,7 @@ class App extends Component {
       for(let k = 0; k < categories[i].items.length; k++) {
         // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
         let completed = localStorage.getItem(JSON.stringify(categories[i].items[k].name));
-        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);  
+        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);
         if(completed === "true") {
           completed = true;
         } else {
@@ -70,7 +70,6 @@ class App extends Component {
           handleItemClick={this.handleEquipmentListItemClick}>
           </EquipmentList> 
         : null}
-        
       </div>
     );
   }

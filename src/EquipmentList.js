@@ -7,24 +7,9 @@ class EquipmentList extends React.Component {
         for(let i = 0; i < category.items.length; i++) {
             let item = category.items[i];
             item.completed ? 
-                itemButtons.push(<EquipmentItemButton completed={true} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick} />)
-                : itemButtons.unshift(<EquipmentItemButton completed={false} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick}/>)
-            /*
-            if(item.completed === false) {
-                itemButtons.unshift(
-                    <button className="btn btn-primary btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        {item.name}
-                    </button>
-                );
-            } else if(item.completed === true) {
-                itemButtons.push(
-                    <button className="btn btn-light btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        <s>{item.name}</s>
-                    </button>
-                );
-            }
-            */
-
+                itemButtons.push(<EquipmentItemButton key={category.name + "-" + item.name} completed={true} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick} />)
+                : 
+                itemButtons.unshift(<EquipmentItemButton key={category.name + "-" + item.name} completed={false} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick}/>);
         }
         return(
             <div className="container-fluid">
@@ -54,11 +39,11 @@ class EquipmentItemButton extends React.Component {
             <React.Fragment>
                 {completed === true ?
                     <button className="btn btn-light btn-lg btn-block" key={itemName} onClick={() => this.props.handleClick(categoryName, itemName)}>
-                            <s>{itemName}</s>
+                        <s>{itemName}</s>
                     </button> 
                     : 
                     <button className="btn btn-primary btn-lg btn-block" key={itemName} onClick={() => this.props.handleClick(categoryName, itemName)}>
-                            {itemName}
+                        {itemName}
                     </button>
                 }
             </React.Fragment>
