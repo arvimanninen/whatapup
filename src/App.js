@@ -9,9 +9,10 @@ class App extends Component {
     this.state = {categories: [], currentView: "MainMenu", currentCategoryName: null};
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleEquipmentListItemClick = this.handleEquipmentListItemClick.bind(this);
+    this.getCategory = this.getCategory.bind(this)
     this.formatState();
   }
-
+;
   formatState() {
     const categories = this.props.categories;
     for(let i = 0; i < categories.length; i++) {
@@ -19,7 +20,7 @@ class App extends Component {
       for(let k = 0; k < categories[i].items.length; k++) {
         // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
         let completed = localStorage.getItem(JSON.stringify(categories[i].items[k].name));
-        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);
+        console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);  
         if(completed === "true") {
           completed = true;
         } else {
@@ -70,6 +71,7 @@ class App extends Component {
           handleItemClick={this.handleEquipmentListItemClick}>
           </EquipmentList> 
         : null}
+        
       </div>
     );
   }
