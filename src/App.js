@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {categories: [], currentView: "MainMenu", currentCategoryName: null};
     this.handleViewChange = this.handleViewChange.bind(this);
     this.handleEquipmentListItemClick = this.handleEquipmentListItemClick.bind(this);
-    this.getCategory = this.getCategory.bind(this)
+    // TODO: REMOVE THIS?
+    this.getCategory = this.getCategory.bind(this);
     this.formatState();
   }
 ;
@@ -71,7 +72,6 @@ class App extends Component {
           handleItemClick={this.handleEquipmentListItemClick}>
           </EquipmentList> 
         : null}
-        
       </div>
     );
   }
