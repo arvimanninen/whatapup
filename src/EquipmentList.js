@@ -9,22 +9,6 @@ class EquipmentList extends React.Component {
             item.completed ? 
                 itemButtons.push(<EquipmentItemButton key={item.name + "-button"} completed={true} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick} />)
                 : itemButtons.unshift(<EquipmentItemButton key={item.name + "-button"} completed={false} categoryName={category.name} itemName={item.name} handleClick={this.props.handleItemClick}/>)
-            /*
-            if(item.completed === false) {
-                itemButtons.unshift(
-                    <button className="btn btn-primary btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        {item.name}
-                    </button>
-                );
-            } else if(item.completed === true) {
-                itemButtons.push(
-                    <button className="btn btn-light btn-lg btn-block" key={item.name} onClick={() => this.props.handleItemClick(category.name, item.name)}>
-                        <s>{item.name}</s>
-                    </button>
-                );
-            }
-            */
-
         }
         return(
             <div className="container-fluid">

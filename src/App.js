@@ -11,25 +11,27 @@ class App extends Component {
     this.handleEquipmentListItemClick = this.handleEquipmentListItemClick.bind(this);
     // TODO: REMOVE THIS?
     this.getCategory = this.getCategory.bind(this);
-    this.formatState();
   }
-;
-  formatState() {
+
+  componentDidMount() {
     const categories = this.props.categories;
+    const categoriesWithSaved = [];
     for(let i = 0; i < categories.length; i++) {
-      this.state.categories.push({name: categories[i].name, items: []});
+      categoriesWithSaved.push({name: categories[i].name, items: []});
       for(let k = 0; k < categories[i].items.length; k++) {
-        // CHECKS IF COMPLETATION INFORMATION IS ALREADY IN localStorage
         let completed = localStorage.getItem(JSON.stringify(categories[i].items[k].name));
         console.log(categories[i].name + "." + categories[i].items[k].name + ".completed: " + completed);  
         if(completed === "true") {
           completed = true;
         } else {
           completed = false;
-        }      
-        this.state.categories[i].items.push({name: categories[i].items[k].name, completed: completed});
+        }
+        categoriesWithSaved[i].items.push({name: categories[i].items[k].name, completed: completed});      
       }
     }
+    this.setState({
+      categories: categoriesWithSaved
+    });
   }
   
   handleViewChange(view, categoryName) {
