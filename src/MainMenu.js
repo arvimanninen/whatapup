@@ -1,8 +1,5 @@
 import React from 'react';
-import EquipmentCategoryIndicator from './EquipmentCategoryIndicator';
-import EquipmentCategoryButton from './EquipmentCategoryButton';
 import EquipmentCategoryRow from './EquipmentCategoryRow';
-
 
 class MainMenu extends React.Component {
     render() {
