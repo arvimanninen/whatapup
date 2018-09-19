@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import update from 'immutability-helper';
 import MainMenu from './MainMenu';
 import EquipmentList from './EquipmentList';
+
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    axios
+      .get("./categorydata.json")
+      .then(response => console.log("HTTP GET successful!"))
+      .catch(error => console.log("Error in HTTP GET!"));
+
     const categories = this.props.categories;
     const categoriesWithSaved = [];
     for(let i = 0; i < categories.length; i++) {
