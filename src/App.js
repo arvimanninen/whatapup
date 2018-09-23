@@ -16,12 +16,47 @@ class App extends Component {
   }
 
   componentDidMount() {
+    var cat = [];
     axios
-      .get("./categorydata.json")
-      .then(response => console.log("HTTP GET successful!"))
-      .catch(error => console.log("Error in HTTP GET!"));
+      .get("http://localhost:1841/restapi")
+      .then(response => {
+        console.log("HTTP GET successful!");
+        console.log("ItemName" + response.data[0].itemName);
+        console.log("CategoryName" + response.data[0].categoryName)
+        console.log("response.data.length: " + response.data.length)
+        class Item {
+          constructor(nName, nCompleted) {
+            this.name = nName;
+            this.completed = nCompleted;
+          }
+        }
+        class Category {
+          constructor(nName) {
+            this.name = nName;
+            this.items = [];
+          }
+        }
+        
+        
+        let currentCategoryName = "";
+        let currentIndex = -1;
+        for(let i = 0; i < response.data.length; i++) {
+          const itemDto = response.data[i];
+          if(itemDto.categoryName !== currentCategoryName) {
+            currentCategoryName = itemDto.categoryName;
+            console.log("currentCategoryName: " + currentCategoryName);
 
-    const categories = this.props.categories;
+            cat.push(new Category(currentCategoryName));
+            currentIndex++;
+            console.log("currentIndex: " + currentIndex);
+          }
+          cat[currentIndex].items.push(new Item(itemDto.itemName));
+        }
+      })
+      .catch(error => console.log("Error in HTTP GET!")
+    );
+    /*
+    const categories = cat;
     const categoriesWithSaved = [];
     for(let i = 0; i < categories.length; i++) {
       categoriesWithSaved.push({name: categories[i].name, items: []});
@@ -35,9 +70,9 @@ class App extends Component {
         }
         categoriesWithSaved[i].items.push({name: categories[i].items[k].name, completed: completed});      
       }
-    }
+    }*/
     this.setState({
-      categories: categoriesWithSaved
+      categories: cat
     });
   }
   
