@@ -4,9 +4,14 @@ import EquipmentCategoryRow from './EquipmentCategoryRow';
 class MainMenu extends React.Component {
     render() {
         const categories = this.props.categories;
-        const categoryRows = categories.map((cat) => 
-            <EquipmentCategoryRow key={cat.name + "-row"} category={cat} handleViewChange={this.props.handleViewChange}/>
-        );
+        let categoryRows;
+        if(categories.length === 0) {
+            categoryRows = <div>Loading data, please wait...</div>;
+        } else {
+            categoryRows = categories.map((cat) => 
+                <EquipmentCategoryRow key={cat.name + "-row"} category={cat} handleViewChange={this.props.handleViewChange}/>
+            );
+        }
         return(
             <div className="container-fluid">
                 <div className="row">
@@ -20,7 +25,7 @@ class MainMenu extends React.Component {
                 </div>
                 <div className="row">
                     <footer className="col-12 text-center">
-                        <a href="https://www.kennelliitto.fi/en/dog-ownership/getting-dog/dont-support-puppy-mills" target="_blank">Don't support puppy mills!</a>
+                        <a href="https://www.kennelliitto.fi/en/dog-ownership/getting-dog/dont-support-puppy-mills" target="_blank" rel="noopener noreferrer">Don't support puppy mills!</a>
                         <br/>
                         Information based on “Iloinen Koira” (The Happy Puppy)-brochure (Finnish Kennel Club *YEAR*)
                         <br/>
