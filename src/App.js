@@ -50,12 +50,24 @@ class App extends Component {
             currentIndex++;
             console.log("currentIndex: " + currentIndex);
           }
-          cat[currentIndex].items.push(new Item(itemDto.itemName));
+          let completed = localStorage.getItem(JSON.stringify(itemDto.itemName));  
+          if(completed === "true") {
+            completed = true;
+          } else {
+            completed = false;
+          }
+          cat[currentIndex].items.push(new Item(itemDto.itemName, completed));
         }
+        this.setState({
+          categories: cat
+        });
       })
+      
       .catch(error => console.log("Error in HTTP GET!")
     );
-    /*
+  }
+
+  /*
     const categories = cat;
     const categoriesWithSaved = [];
     for(let i = 0; i < categories.length; i++) {
@@ -71,10 +83,6 @@ class App extends Component {
         categoriesWithSaved[i].items.push({name: categories[i].items[k].name, completed: completed});      
       }
     }*/
-    this.setState({
-      categories: cat
-    });
-  }
   
   handleViewChange(view, categoryName) {
     this.setState({
