@@ -6,7 +6,7 @@ Features:
 
 - Category and Item data queryed from REST API.
 
-Stack
+Stack:
 
 Client app
 
@@ -16,7 +16,7 @@ Used frameworks and libraries: React, Immutability-helper, Bootstrap 4, Create-r
 REST API
 
 Programming language: C#.
-Used frameworks and libraries: ASP.NET Core 2.1, Entity Framework Core 2.1
+Used frameworks and libraries: ASP.NET Core 2.1, Entity Framework Core 2.1.
 https://github.com/arvimanninen/whatapup_RestApi
 
 
